@@ -32,7 +32,7 @@ public class FrontEnd {
 
                 validInput = true;
                 System.out.println("Let us proceed!\n");
-                this.registerAccount(scanner, inputError);
+                this.registerAccount(scanner, inputError, backEnd);
 
             } catch (IllegalArgumentException e) {
                 System.out.println("Error " + e.getMessage());
@@ -40,9 +40,9 @@ public class FrontEnd {
         }
     }
 
-    // THIS IS THE REGISTER ACCOUNT PAGE (This here will ask the user to create an
+    // THIS IS THE REGISTER ACCOUNTPAGE (This here will ask the user to create an
     // account)
-    public void registerAccount(Scanner scanner, InputMismatchException inputError) {
+    public void registerAccount(Scanner scanner, InputMismatchException inputError, backEnd backEnd) {
         System.out.println("=".repeat(70));
         backEnd.printCentered("Welcome to your Dashboard");
         System.out.println("=".repeat(70));
@@ -69,7 +69,7 @@ public class FrontEnd {
 
                 validInput = true;
                 System.out.println("Let us proceed!\n");
-                this.createAccount(scanner);
+                this.createAccount(scanner, backEnd);
 
             } catch (IllegalArgumentException e) {
                 System.out.println("Error " + e.getMessage());
@@ -79,7 +79,7 @@ public class FrontEnd {
 
     // THIS IS THE CREATE ACCOUNT PAGE (This here will ask the user to create an
     // account)
-    public void createAccount(Scanner scanner) {
+    public void createAccount(Scanner scanner, backEnd backEnd) {
         String name = "";
         int age = 0;
 
@@ -132,13 +132,13 @@ public class FrontEnd {
 
                 if (correct.equalsIgnoreCase("n")) {
                     System.out.println("Going back");
-                    this.createAccount(scanner);
+                    this.createAccount(scanner, backEnd);
                     return;
                 }
 
                 validInput = true;
                 System.out.println("Great!");
-                this.financeTrackerMainWindow(name, age, scanner);
+                this.financeTrackerMainWindow(name, age, scanner, backEnd);
 
             } catch (InputMismatchException e) {
                 System.out.println("Error! " + e.getMessage());
@@ -146,7 +146,7 @@ public class FrontEnd {
         }
     }
 
-    public void financeTrackerMainWindow(String name, int age, Scanner scanner) {
+    public void financeTrackerMainWindow(String name, int age, Scanner scanner, backEnd backEnd) {
         System.out.println("=".repeat(70));
         System.out.println("");
         backEnd.printCentered("Account Created Successfully!");
@@ -163,6 +163,13 @@ public class FrontEnd {
 
         System.out.print("Please choose an option: ");
         int options = scanner.nextInt();
+        scanner.nextLine();
 
+        backEnd.financeTrackerMainWindowOptions(scanner, options);
+
+    }
+
+    public void balance() {
+        System.out.println("Your Balance: ");
     }
 }
