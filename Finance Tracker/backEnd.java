@@ -15,8 +15,12 @@ public class backEnd {
         boolean validInput = false;
 
         while (!validInput) {
-            if (options == 1) {
+            try {
+                if (options == 1) {
                 this.addMoney(scanner);
+            }
+            } catch {
+
             }
         }
     }
@@ -34,6 +38,5 @@ public class backEnd {
             System.out.println("Here is your new Balance: ");
         }
 
-        
     }
 }
