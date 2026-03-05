@@ -23,17 +23,17 @@ public class backEnd {
 
     // this method is connected from the options of 1
     public void addMoney(Scanner scanner) {
-        System.out.print("Do you want to add Money? ");
+        System.out.print("Do you want to add Money? (y/n): ");
         String option = scanner.nextLine();
 
         if (option.equalsIgnoreCase("y") && option.equalsIgnoreCase("n")) {
+            System.out.println("=".repeat(70));
+            printCentered("Proceeding to add money please wait");
+            System.out.println("=".repeat(70));
 
+            System.out.println("Here is your new Balance: ");
         }
 
-        System.out.println("=".repeat(70));
-        printCentered("Proceeding to add money please wait");
-        System.out.println("=".repeat(70));
-
-        System.out.println("Here is your new Balance: ");
+        
     }
 }
