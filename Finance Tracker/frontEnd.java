@@ -69,7 +69,7 @@ public class FrontEnd {
 
                 validInput = true;
                 System.out.println("Let us proceed!\n");
-                this.createAccount(scanner, backEnd);
+                this.createAccount(scanner, backEnd, inputError);
 
             } catch (IllegalArgumentException e) {
                 System.out.println("Error " + e.getMessage());
@@ -79,7 +79,7 @@ public class FrontEnd {
 
     // THIS IS THE CREATE ACCOUNT PAGE (This here will ask the user to create an
     // account)
-    public void createAccount(Scanner scanner, backEnd backEnd) {
+    public void createAccount(Scanner scanner, backEnd backEnd, InputMismatchException inputError) {
         String name = "";
         int age = 0;
 
@@ -132,13 +132,13 @@ public class FrontEnd {
 
                 if (correct.equalsIgnoreCase("n")) {
                     System.out.println("Going back");
-                    this.createAccount(scanner, backEnd);
+                    this.createAccount(scanner, backEnd, inputError);
                     return;
                 }
 
                 validInput = true;
                 System.out.println("Great!");
-                this.financeTrackerMainWindow(name, age, scanner, backEnd);
+                this.financeTrackerMainWindow(name, age, scanner, backEnd, inputError);
 
             } catch (InputMismatchException e) {
                 System.out.println("Error! " + e.getMessage());
@@ -146,7 +146,8 @@ public class FrontEnd {
         }
     }
 
-    public void financeTrackerMainWindow(String name, int age, Scanner scanner, backEnd backEnd) {
+    public void financeTrackerMainWindow(String name, int age, Scanner scanner, backEnd backEnd,
+            InputMismatchException inputError) {
         System.out.println("=".repeat(70));
         System.out.println("");
         backEnd.printCentered("Account Created Successfully!");
@@ -165,13 +166,11 @@ public class FrontEnd {
         int options = scanner.nextInt();
         scanner.nextLine();
 
-        backEnd.financeTrackerMainWindowOptions(scanner, options);
+        backEnd.financeTrackerMainWindowOptions(scanner, options, null, inputError, name);
 
     }
 
     public void balance() {
         System.out.println("Your Balance: ");
-        System.out.println("The current Date: ");
     }
 }
-
