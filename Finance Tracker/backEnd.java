@@ -163,4 +163,27 @@ public class backEnd {
             }
         }
     }
+
+    public void withdrawMoney(Scanner scanner) {
+
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                System.out.println("Please enter your desire withdrawal amount: ");
+                int withdraw = scanner.nextInt();
+
+                if (withdraw < 0) {
+                    System.out.println("Cannot withdraw less than 0 or negative. Please Try again");
+                }
+
+                if (withdraw > balance) {
+                    System.out.println("You are withdrawing more than the balance you have. Please Try Again");
+                }
+            } catch (InputMismatchException errorInput) {
+
+            }
+        }
+
+    }
 }
