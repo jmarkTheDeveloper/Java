@@ -36,7 +36,7 @@ public class backEnd {
         if (options == 1) {
             this.addMoney(scanner, frontEnd);
         } else if (options == 2) {
-            this.withdrawMoney(scanner);
+            this.withdrawMoney(scanner, frontEnd);
         } else if (options == 3) {
             this.addMoney(scanner, frontEnd);
         }
@@ -78,37 +78,7 @@ public class backEnd {
         printCentered("Here you can add your money to an existing balance");
         System.out.println("=".repeat(70));
 
-        // --- Step 3: Help prompt ---
-        validInput = false;
-        while (!validInput) {
-            try {
-                System.out.print("Do you need help? (y/n): ");
-                String help = scanner.nextLine().trim();
-
-                if (!help.equalsIgnoreCase("y") && !help.equalsIgnoreCase("n")) {
-                    throw new InputMismatchException("Your option must be Y or N only");
-                }
-
-                if (help.equalsIgnoreCase("y")) {
-                    validInput = true;
-                    System.out.println("Great, let me help you!");
-                    System.out
-                            .println("This section is where you can deposit or add your money to an existing balance.");
-                    System.out.println("1. Enter the amount of money you wish to add.");
-                    System.out.println();
-                }
-
-                if (help.equalsIgnoreCase("n")) {
-                    validInput = true;
-                    System.out.println("Good! Wait to proceed.");
-                }
-
-            } catch (InputMismatchException inputError) {
-                System.out.println("Error! " + inputError.getMessage());
-            }
-        }
-
-        // --- Step 4: Enter deposit amount ---
+        // --- Step 2: Enter deposit amount ---
         validInput = false;
         while (!validInput) {
             try {
@@ -135,7 +105,7 @@ public class backEnd {
             }
         }
 
-        // --- Step 5: Another transaction? ---
+        // --- Step 3: Another transaction? ---
         validInput = false;
         while (!validInput) {
             try {
@@ -164,29 +134,34 @@ public class backEnd {
         }
     }
 
-    public void withdrawMoney(Scanner scanner) {
+    public void withdrawMoney(Scanner scanner, FrontEnd frontEnd) {
 
         boolean validInput = false;
 
         while (!validInput) {
             try {
                 System.out.print("Please enter your desire withdrawal amount: ");
-                int withdraw = scanner.nextInt();
+                double withdraw = scanner.nextDouble();
+                scanner.nextLine();
 
-                if (withdraw < 0) {
+                if (withdraw <= 0) {
                     System.out.println("Cannot withdraw less than 0 or negative. Please Try again");
+                    continue;
                 }
 
-                if (withdraw <= balance) {
+                if (withdraw > balance) {
                     System.out.println("You are withdrawing more than the balance you have. Please Try Again");
+                    continue;
                 }
 
                 balance -= withdraw;
                 System.out.println("Withdraw Success");
                 System.out.println("New Balance: " + balance);
                 validInput = true;
+
             } catch (InputMismatchException errorInput) {
                 System.out.println("Error!" + errorInput.getMessage());
+                scanner.nextLine();
             }
         }
 
@@ -203,7 +178,7 @@ public class backEnd {
                 if (option.equals("y")) {
                     validInput = true;
                     System.out.println("Okay going back!");
-                    this.withdrawMoney(scanner);
+                    this.withdrawMoney(scanner, frontEnd);
                 }
 
                 if (option.equals("n")) {
