@@ -1,5 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class backEnd {
 
@@ -38,7 +40,7 @@ public class backEnd {
         } else if (options == 2) {
             this.withdrawMoney(scanner, frontEnd);
         } else if (options == 3) {
-            this.addMoney(scanner, frontEnd);
+            this.showBalance(frontEnd, scanner);
         }
     }
 
@@ -193,7 +195,20 @@ public class backEnd {
 
     }
 
-    public void showBalance() {
-        
+    public void showBalance(FrontEnd frontEnd, Scanner scanner) {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
+        String dateTime = now.format(formatter);
+
+        System.out.println("=".repeat(70));
+        printCentered("Welcome to your balance dashboard! " + name);
+        System.out.println("=".repeat(70));
+
+        System.out.println();
+        System.out.println("Your current balance as of " + dateTime + ": " + balance);
+        System.out.println();
+
+        System.out.print("Press Enter to go back");
+        scanner.nextLine();
     }
- }
+}
