@@ -40,7 +40,7 @@ A simple console-based personal finance tracker built in Java. This application 
 2. Open the project in any Java IDE (IntelliJ, Eclipse, VS Code)
 3. Run the `Main.java` file (or whichever file contains your `main` method)
 
-### Option 2 — Run as a Standalone Console App (JAR + 4jar)
+### Option 2 — Run as a Standalone Console App (JAR + Launch4j)
 
 If you want to run this as a standalone `.exe`-like console application without an IDE:
 
@@ -49,11 +49,11 @@ If you want to run this as a standalone `.exe`-like console application without 
    - In Eclipse: `File → Export → Java → Runnable JAR file`
    - Make sure to set your **main class** as the entry point
 
-2. **Download 4jar**
-   - Go to [https://www.4jar.com](https://www.4jar.com) and download the tool
+2. **Download Launch4j**
+   - Go to [https://launch4j.sourceforge.net](https://launch4j.sourceforge.net) and download the tool
 
-3. **Wrap the JAR using 4jar**
-   - Open 4jar and load your `.jar` file
+3. **Wrap the JAR using Launch4j**
+   - Open Launch4j and load your `.jar` file
    - Configure it to run as a console application
    - Export it as a `.exe` file
 
