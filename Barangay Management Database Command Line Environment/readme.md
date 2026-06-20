@@ -1,7 +1,7 @@
 # Barangay Management System
 ### Java + MongoDB · Command Line Interface
 
-A command-line barangay records management system built with Java and MongoDB. Handles resident records, blotter reports, document requests, officials, projects, and user administration — all from the terminal.
+A command-line barangay records management system built with Java and MongoDB Atlas. Handles resident records, blotter reports, document requests, officials, projects, and user administration — all from the terminal.
 
 ---
 
@@ -10,7 +10,8 @@ A command-line barangay records management system built with Java and MongoDB. H
 | Layer | Technology |
 |---|---|
 | Language | Java 17+ |
-| Database | MongoDB (via MongoDB Java Driver) |
+| Database | MongoDB Atlas (Cloud) |
+| Driver | MongoDB Java Driver (Sync) |
 | Architecture | DAO Pattern (Data Access Object) |
 | Build | Manual / Javac |
 
@@ -18,10 +19,10 @@ A command-line barangay records management system built with Java and MongoDB. H
 
 ## Prerequisites
 
-Before running this project, make sure you have the following installed:
+Before running this project, make sure you have the following:
 
 - **Java JDK 17+** — [Download](https://adoptium.net/)
-- **MongoDB Community Server** — [Download](https://www.mongodb.com/try/download/community)
+- **MongoDB Atlas Account** — [Sign up free](https://www.mongodb.com/atlas)
 - **MongoDB Java Driver** (JAR) — [Download](https://mvnrepository.com/artifact/org.mongodb/mongodb-driver-sync)
 - **BSON JAR** — bundled with the MongoDB Java Driver
 
@@ -52,19 +53,26 @@ Barangay Management System/
 
 ---
 
-## MongoDB Setup
+## MongoDB Atlas Setup
 
-1. Start your MongoDB server locally:
-   ```bash
-   mongod
+1. Log in to [MongoDB Atlas](https://cloud.mongodb.com) and create a free **M0 cluster**.
+
+2. Under **Database Access**, create a database user with a username and password.
+
+3. Under **Network Access**, add your IP address (or `0.0.0.0/0` for open access during development).
+
+4. Click **Connect → Drivers** and copy your connection string. It will look like:
+   ```
+   mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/
    ```
 
-2. The default connection string used in `DatabaseConfig.java`:
-   ```
-   mongodb://localhost:27017
+5. Paste your connection string into `DatabaseConfig.java`:
+   ```java
+   private static final String CONNECTION_STRING = "mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/";
+   private static final String DATABASE_NAME = "barangay_db";
    ```
 
-3. Database name: `barangay_db` *(update in `DatabaseConfig.java` if needed)*
+> ⚠️ **Never commit your credentials to GitHub.** Use environment variables or a `.env` file and add it to `.gitignore`.
 
 ---
 
