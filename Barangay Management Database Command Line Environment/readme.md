@@ -1,3 +1,5 @@
+# STILL DEVELOPING | THANK YOU FOR YOUR PATIENCE
+
 # Barangay Management System
 ### Java + MongoDB · Command Line Interface
 
