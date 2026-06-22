@@ -10,7 +10,8 @@ public class DatabaseConfig {
     private static final MongoClient mongoClient;
     private static final MongoDatabase database;
 
-    private static final String CONNECTION_STRING = "mongodb+srv://jaemarkalmeria08_db_user:LoodlkLNr7HH167R@barangaymanagementsyste.nomfcuz.mongodb.net/?appName=BarangayManagementSystems";
+    //PUT HERE YOUR CONNECTION STRING
+    private static final String CONNECTION_STRING = "";
     private static final String DATABASE_NAME = "barangay_db";
 
     static {
