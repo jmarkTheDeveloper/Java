@@ -27,12 +27,29 @@ public class MainMenu {
             UserAdmin authenticatedUser = adminDAO.authenticate(username, password);
 
             if (authenticatedUser != null) {
-                System.out.println("Login Successful! Welcome: " + authenticatedUser.getAdminName());
+                System.out.println("Login Successful! Welcome: " + authenticatedUser.getAdminName() + "\n");
             } else {
                 System.out.println("Invalid Username or Password: Access Denied!");
             }
         } catch (Exception e) {
             System.out.println("Please input right credentials");
+        }
+
+        System.out.println("=".repeat(50));
+        printCentered.print("Welcome to your Barangay Management System!");
+        printCentered.print("Thiis your dashboard");
+        System.out.println("=".repeat(50));
+
+        String[] options = {
+                "1. Add Resident",
+                "2. Add Project",
+                "3. Add Officials",
+                "4. Add Blotter",
+                "5. Add Document Request"
+        };
+
+        for (int i = 0; i < options.length; i++) {
+            System.out.println(options[i]);
         }
     }
 }
